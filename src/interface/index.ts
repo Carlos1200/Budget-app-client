@@ -15,3 +15,9 @@ export interface AuthenticateUserInput {
   email: string;
   password: string;
 }
+
+export interface newUserInput {
+  name: string;
+  email: string;
+  password: string;
+}

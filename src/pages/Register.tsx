@@ -1,34 +1,34 @@
 import { useMutation } from "@apollo/client";
 import { Formik, Form } from "formik";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import { CustomTextInput } from "../components";
-import { LOGIN_MUTATION } from "../graphql";
-import { AuthenticateUserInput, UserResponse } from "../interface";
-import { LoginSchema } from "../schema";
+import { REGISTER_MUTATION } from "../graphql";
+import { newUserInput, UserResponse } from "../interface";
+import { RegisterSchema } from "../schema";
 import { setUser } from "../store/slices/auth";
 
-export const Login = () => {
+export const Register = () => {
   const [message, setMessage] = useState<null | string>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [authenticateUser] = useMutation<
-    { authenticateUser: UserResponse },
-    { user: AuthenticateUserInput }
-  >(LOGIN_MUTATION);
+  const [registerUser] = useMutation<
+    { registerUser: UserResponse },
+    { user: newUserInput }
+  >(REGISTER_MUTATION);
 
   return (
     <div className="bg-secondary h-screen w-full">
       <Helmet>
-        <title>Login</title>
-        <meta name="description" content="Login to the application" />
+        <title>Register</title>
+        <meta name="description" content="Register to the application" />
       </Helmet>
       <div className="flex items-center h-full w-full">
         <div>
           <h1 className="text-3xl font-semibold font-serif text-center text-white">
-            Login
+            Register New User
           </h1>
           {message && (
             <p className="text-center text-white font-semibold">{message}</p>
@@ -36,11 +36,16 @@ export const Login = () => {
           <div className="w-screen">
             <div className="mt-5 bg-primary px-4 py-5 rounded-md w-11/12 sm:w-9/12 md:w-1/2 lg:w-1/3 xl:w-1/4 shadow-md mx-auto">
               <Formik
-                initialValues={{ email: "", password: "" }}
-                onSubmit={({ email, password }) => {
-                  authenticateUser({
+                initialValues={{
+                  email: "",
+                  password: "",
+                  name: "",
+                  confirmPassword: "",
+                }}
+                onSubmit={({ email, password, name }) => {
+                  registerUser({
                     variables: {
-                      user: { email, password },
+                      user: { email, password, name },
                     },
                     onError: (error) => {
                       setMessage(error.message);
@@ -49,26 +54,29 @@ export const Login = () => {
                       }, 1500);
                     },
                     onCompleted(data) {
-                      if (!data.authenticateUser) {
-                        setMessage("Invalid credentials");
+                      if (!data.registerUser) {
+                        setMessage("Something went wrong");
                         setTimeout(() => {
                           setMessage(null);
                         }, 1500);
                       } else {
-                        localStorage.setItem(
-                          "token",
-                          data.authenticateUser.token
-                        );
-                        dispatch(setUser(data.authenticateUser.user));
+                        localStorage.setItem("token", data.registerUser.token);
+                        dispatch(setUser(data.registerUser.user));
                         navigate("/");
                       }
                     },
                   });
                 }}
-                validationSchema={LoginSchema}
+                validationSchema={RegisterSchema}
               >
                 {() => (
                   <Form className="w-full">
+                    <CustomTextInput
+                      label="Name"
+                      name="name"
+                      type="text"
+                      placeholder="Enter your name"
+                    />
                     <CustomTextInput
                       label="Email"
                       name="email"
@@ -82,16 +90,23 @@ export const Login = () => {
                       placeholder="Enter your password"
                       labelClassName="mt-5"
                     />
+                    <CustomTextInput
+                      label="Confirm Password"
+                      name="confirmPassword"
+                      type="password"
+                      placeholder="Enter your password"
+                      labelClassName="mt-5"
+                    />
                     <div className="flex justify-center">
                       <button
                         type="submit"
-                        className="bg-quaternary hover:bg-tertiary text-white font-bold py-2 px-4 rounded-md mt-4 w-9/12 md:w-1/2 lg:w-1/3 xl:w-1/4"
+                        className="bg-quaternary hover:bg-tertiary text-white font-bold p-2 rounded-md mt-4 w-9/12 md:w-1/2 lg:w-1/3 xl:w-1/4"
                       >
-                        Login
+                        Register
                       </button>
                     </div>
-                    <Link to="/register" about="Go to the register page">
-                      <p className="text-right text-white">Register</p>
+                    <Link to="/login" about="Go to the register page">
+                      <p className="text-right text-white">Login</p>
                     </Link>
                   </Form>
                 )}
