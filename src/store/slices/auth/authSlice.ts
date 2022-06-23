@@ -26,8 +26,16 @@ export const authSlice = createSlice({
       state.createdAt = action.payload.createdAt;
       state.updatedAt = action.payload.updatedAt;
     },
+    clearUser: (state) => {
+      state.status = "unauthenticated";
+      state.email = "";
+      state.name = "";
+      state.id = "";
+      state.createdAt = "";
+      state.updatedAt = "";
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser } = authSlice.actions;
+export const { setUser, clearUser } = authSlice.actions;
