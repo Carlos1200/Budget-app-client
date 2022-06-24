@@ -1,7 +1,13 @@
+import { Helmet } from "react-helmet-async";
+
 export const Dashboard = () => {
   return (
     <div>
-      <h1 className="text-center">Dashboard</h1>
+      <Helmet>
+        <title>Dashboard</title>
+        <meta name="description" content="Dashboard" />
+      </Helmet>
+      <h1 className="">Dashboard</h1>
     </div>
   );
 };

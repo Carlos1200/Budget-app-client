@@ -5,6 +5,7 @@ import { Loading, PrivateRoute } from "./components";
 import { AUTHUSER_QUERY } from "./graphql";
 import { User } from "./interface";
 import { Dashboard, Login, Page404, Register } from "./pages";
+import { DashboardRoutes } from "./routes/DashboardRoutes";
 import { RootState } from "./store";
 import { clearUser, setUser } from "./store/slices/auth";
 
@@ -32,9 +33,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/" element={<Dashboard />} />
-        </Route>
+        <Route
+          path="/*"
+          element={
+            <PrivateRoute>
+              <DashboardRoutes />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Page404 />} />
