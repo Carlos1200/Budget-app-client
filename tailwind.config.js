@@ -11,7 +11,10 @@ module.exports = {
         secondary: "#27496D",
         tertiary: "#0C7B93",
         quaternary: "#00A8CC",
-      }
+      },
+      fontFamily: {
+        nurito: ["Nurito", "sans-serif"],
+      },
     },
   },
   plugins: [],

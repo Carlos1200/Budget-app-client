@@ -11,6 +11,13 @@ export interface User {
   name: string;
 }
 
+export interface CategoryResponse {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AuthenticateUserInput {
   email: string;
   password: string;
@@ -20,4 +27,13 @@ export interface newUserInput {
   name: string;
   email: string;
   password: string;
+}
+
+export interface BudgetResponse {
+  id: string;
+  name: string;
+  amount: number;
+  remaining: number;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -17,3 +17,12 @@ export const RegisterSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Required"),
 });
+
+export const CategorySchema = Yup.object({
+  name: Yup.string().required("Required"),
+});
+
+export const BudgetSchema = Yup.object({
+  name: Yup.string().required("Required"),
+  amount: Yup.number().typeError("Must be a number").required("Required"),
+});

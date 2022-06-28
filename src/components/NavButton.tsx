@@ -19,8 +19,8 @@ export const NavButton = ({ to, icon, logout }: NavButtonProps) => {
       to={to}
       onClick={logout ? handleLogout : undefined}
       className={({ isActive }) =>
-        `text-4xl mx-auto text-white hover:text-quaternary transition-colors duration-200 ease-in-out ${
-          isActive && "text-quaternary"
+        `text-4xl mx-auto my-1 hover:text-quaternary transition-colors duration-200 ease-in-out ${
+          isActive ? "text-quaternary" : "text-white"
         }`
       }
     >

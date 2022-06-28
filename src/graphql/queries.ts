@@ -11,3 +11,16 @@ export const AUTHUSER_QUERY = gql`
     }
   }
 `;
+
+export const BUDGET_QUERY = gql`
+  query GetBudgetsByUser {
+    getBudgetsByUser {
+      id
+      amount
+      remaining
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;

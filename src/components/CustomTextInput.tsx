@@ -25,7 +25,7 @@ export const CustomTextInput = ({
     <>
       <label
         htmlFor={props.id || props.name}
-        className={`block text-white text-sm font-bold mb-2 ${labelClassName}`}
+        className={`block text-sm font-bold mb-2 ${labelClassName}`}
       >
         {label}
       </label>

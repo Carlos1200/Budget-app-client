@@ -29,3 +29,27 @@ export const REGISTER_MUTATION = gql`
     }
   }
 `;
+
+export const NEW_CATEGORY_MUTATION = gql`
+  mutation CreateCategory($name: String!) {
+    createCategory(name: $name) {
+      name
+      updatedAt
+      id
+      createdAt
+    }
+  }
+`;
+
+export const NEW_BUDGET_MUTATION = gql`
+  mutation CreateBudget($budget: BudgetInput) {
+    createBudget(budget: $budget) {
+      id
+      amount
+      remaining
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;

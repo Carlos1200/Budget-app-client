@@ -74,13 +74,14 @@ export const Login = () => {
                       name="email"
                       type="email"
                       placeholder="Enter your email"
+                      labelClassName="text-white"
                     />
                     <CustomTextInput
                       label="Password"
                       name="password"
                       type="password"
                       placeholder="Enter your password"
-                      labelClassName="mt-5"
+                      labelClassName="mt-5 text-white"
                     />
                     <div className="flex justify-center">
                       <button
