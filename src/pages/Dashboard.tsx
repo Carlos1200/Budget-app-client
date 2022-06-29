@@ -36,14 +36,14 @@ export const Dashboard = () => {
     },
   });
   return (
-    <div>
+    <div className="ml-4">
       <Helmet>
         <title>Dashboard</title>
         <meta name="description" content="Dashboard" />
       </Helmet>
       <div className="border-b border-tertiary/50">
         <h1
-          className="text-3xl text-tertiary font-nurito font-bold mt-4 ml-4 lg:ml-0"
+          className="mt-4 ml-4 text-3xl font-bold text-tertiary font-nurito lg:ml-0"
           ref={h1Ref}
         >
           Hello, {name}!
@@ -52,7 +52,7 @@ export const Dashboard = () => {
       </div>
       <div>
         <h2
-          className="text-2xl text-tertiary font-nurito font-bold my-4 ml-4 lg:ml-0"
+          className="my-4 ml-4 text-2xl font-bold text-tertiary font-nurito lg:ml-0"
           ref={h2Ref}
         >
           Your Budgets

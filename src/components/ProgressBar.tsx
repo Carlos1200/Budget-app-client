@@ -8,7 +8,6 @@ interface ProgressBarProps {
 
 export const ProgressBar = ({ value, maxValue }: ProgressBarProps) => {
   const percentage = Number(((value / maxValue) * 100).toFixed(2));
-  console.log(percentage);
 
   const color =
     percentage > 80 ? "#00A8CC" : percentage > 50 ? "orange" : "red";

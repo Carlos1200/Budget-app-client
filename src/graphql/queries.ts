@@ -24,3 +24,25 @@ export const BUDGET_QUERY = gql`
     }
   }
 `;
+
+export const BUDGETID_QUERY = gql`
+  query GetBudget($getBudgetId: ID!) {
+    getBudget(id: $getBudgetId) {
+      id
+      amount
+      remaining
+      name
+      categories {
+        id
+        name
+        transactions {
+          id
+          amount
+          createdAt
+        }
+        createdAt
+      }
+      createdAt
+    }
+  }
+`;
